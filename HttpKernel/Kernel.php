@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Kernel as BaseKernel;
  *
  * Part of the interface from Silex\Application
  */
-abstract class Kernel extends BaseKernel
+abstract class Kernel extends BaseKernel implements \ArrayAccess
 {
     /**
      * Maps a pattern to a callable.
@@ -114,5 +114,25 @@ abstract class Kernel extends BaseKernel
         $this->flush();
 
         return parent::handle($request, $type, $catch);
+    }
+
+    public function offsetExists($offset)
+    {
+        return $this->getContainer()->has($offset);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->getContainer()->get($offset);
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        throw new \BadMethodCallException();
+    }
+
+    public function offsetUnset($offset)
+    {
+        throw new \BadMethodCallException();
     }
 }
