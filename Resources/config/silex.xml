@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="silex.routes.class">Symfony\Component\Routing\RouteCollection</parameter>
+        <parameter key="silex.controllers.class">AdrienBrault\SilexBundle\Silex\ControllerCollection</parameter>
+        <parameter key="silex.route.class">Silex\Route</parameter>
+        <parameter key="silex.listener.string_to_response.class">Silex\EventListener\StringToResponseListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="silex.routes" class="%silex.routes.class%"/>
+
+        <service id="silex.controllers" class="%silex.controllers.class%">
+            <argument type="service" id="silex.route"/>
+        </service>
+
+        <service id="silex.route" class="%silex.route.class%" public="false"/>
+
+        <service id="silex.listener.string_to_response" class="%silex.listener.string_to_response.class%">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

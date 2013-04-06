@@ -1,0 +1,11 @@
+{
+    "name": "adrienbrault/silex-bundle",
+    "autoload": {
+        "psr-0": { "AdrienBrault\\SilexBundle": "" }
+    },
+    "require": {
+        "symfony/framework-bundle": "~2.2",
+        "silex/silex": "1.0.x-dev"
+    },
+    "target-dir": "AdrienBrault/SilexBundle"
+}
