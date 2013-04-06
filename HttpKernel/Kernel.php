@@ -88,16 +88,31 @@ abstract class Kernel extends BaseKernel
      */
     public function flush($prefix = '')
     {
+        if (!$this->booted) {
+            return;
+        }
+
         $this->getRoutes()->addCollection($this->getControllers()->flush($prefix));
     }
 
     public function getControllers()
     {
+        $this->boot();
+
         return $this->getContainer()->get('silex.controllers');
     }
 
     public function getRoutes()
     {
+        $this->boot();
+
         return $this->getContainer()->get('silex.routes');
+    }
+
+    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
+    {
+        $this->flush();
+
+        return parent::handle($request, $type, $catch);
     }
 }
