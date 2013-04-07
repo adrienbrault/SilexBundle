@@ -14,8 +14,8 @@ and you end up loosing time writing service providers.
 The idea here is to define your controllers like in a silex application (*fast prototyping*), while keeping symfony 2 full
 stack advantages (fast advanced feature integration with bundles).
 
-I started a symfony2 silex distribution using this bundle at (https://github.com/adrienbrault/symfony-silex-edition/compare/2.2...2.2-silex)[https://github.com/adrienbrault/symfony-silex-edition/compare/2.2...2.2-silex].
-You can view a diff of what's needed to integrate the bundle into your app and use it : (https://github.com/adrienbrault/symfony-silex-edition/compare/2.2...2.2-silex)[https://github.com/adrienbrault/symfony-silex-edition/compare/2.2...2.2-silex].
+I started a symfony2 silex distribution using this bundle at https://github.com/adrienbrault/symfony-silex-edition/compare/2.2...2.2-silex .
+You can view a diff of what's needed to integrate the bundle into your app and use it : https://github.com/adrienbrault/symfony-silex-edition/compare/2.2...2.2-silex .
 
 WIP
 ---
