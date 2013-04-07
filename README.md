@@ -4,6 +4,8 @@ AdrienBraultSilexBundle
 Integrate Silex into symfony2 full stack (without pimple and without the services providers ... because we already have
 awesome bundles :>).
 
+Note that this doesn't use Pimple, so you'll have to register your services with the DIC.
+
 Motivation
 ----------
 
