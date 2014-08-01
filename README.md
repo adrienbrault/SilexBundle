@@ -19,7 +19,8 @@ For example, you could write an api with the silex api while still being able to
 Installation
 ------------
 
-- Add the bundle to your AppKernel
+- Require `adrienbrault/SilexBundle 0.1.*@dev`
+- Add `AdrienBrault\SilexBundle\SilexBundle` to your AppKernel
 - Add the following to your `routing.yml`:
 ```yaml
 silex:
