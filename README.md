@@ -33,3 +33,19 @@ silex:
     files:
         - "%kernel.root_dir%/../src/controllers.php"
 ```
+- Profit:
+```php
+<?php
+
+// src/controllers.php
+
+$app->get('/', function () {
+    return 'Hello!';
+});
+
+$app->get('/wow/{name}', function ($name) use ($app) {
+    return $app['twig']->render('wow.html.twig', array(
+        'name' => $name,
+    ));
+});
+```
