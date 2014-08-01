@@ -16,8 +16,16 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
+        $rootNode = $treeBuilder->root('silex');
 
-        $treeBuilder->root('silex');
+        $rootNode
+            ->children()
+                ->arrayNode('files')
+                    ->prototype('scalar')->end()
+                    ->defaultValue(array())
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

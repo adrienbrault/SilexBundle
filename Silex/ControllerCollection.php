@@ -21,8 +21,8 @@ class ControllerCollection extends BaseControllerCollection
     {
         $controller = parent::match($pattern, $to);
 
-        $name = 'foo';
-        $this->controllersTo['foo'] = $to;
+        $name = sha1($pattern);
+        $this->controllersTo[$name] = $to;
         $controller->getRoute()->setDefault('_controller', 'silex@'.$name);
 
         return $controller;

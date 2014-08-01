@@ -18,22 +18,7 @@ class ControllerResolverIntegrationPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $defaultCRDefinition = $container->findDefinition('controller_resolver');
-
-        switch ($defaultCRDefinition->getClass()) {
-            case '%jms_di_extra.controller_resolver.class%':
-                $container->setAlias('controller_resolver', 'silex.controller_resolver.jms_diextra');
-                break;
-
-            case '%controller_resolver.class%':
-                $container->setDefinition('silex.base_controller_resolver.symfony', $defaultCRDefinition);
-                $crDefinition = new DefinitionDecorator('silex.base_controller_resolver.symfony');
-                $crDefinition->setClass('%silex.controller_resolver.symfony.class%');
-                $crDefinition->addMethodCall('setControllerCollection', array('%silex.controllers%'));
-                $container->setDefinition('controller_resolver', $crDefinition);
-                break;
-
-            default:
-                throw new \RuntimeException(sprintf('Controller resolver is not supported'));
-        }
+        $container->setDefinition('silex.wrapped_controller_resolver', $defaultCRDefinition);
+        $container->setAlias('controller_resolver', 'silex.controller_resolver');
     }
 }

@@ -5,18 +5,17 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="silex.controller_resolver.symfony.class">AdrienBrault\SilexBundle\HttpKernel\SymfonyControllerResolver</parameter>
-        <parameter key="silex.controller_resolver.jms_diextra.class">AdrienBrault\SilexBundle\HttpKernel\JMSDiExtraControllerResolver</parameter>
+        <parameter key="silex.controller_resolver.class">AdrienBrault\SilexBundle\HttpKernel\ControllerResolver</parameter>
     </parameters>
 
     <services>
-        <service id="silex.controller_resolver.jms_diextra"
-                 class="%silex.controller_resolver.jms_diextra.class%"
-                 parent="jms_di_extra.controller_resolver"
-                 public="false">
-            <call method="setControllerCollection">
-                <argument type="service" id="silex.controllers"/>
-            </call>
+        <service id="silex.wrapped_controller_resolver"/>
+        <service id="silex.controller_resolver"
+                 class="%silex.controller_resolver.class%"
+                 public="false"
+        >
+            <argument type="service" id="silex.controllers"/>
+            <argument type="service" id="silex.wrapped_controller_resolver"/>
         </service>
     </services>
 </container>
